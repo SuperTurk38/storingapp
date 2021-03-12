@@ -14,14 +14,23 @@
         <h1>Nieuwe melding</h1>
 
         <form action="../backend/meldingenController.php" method="POST">
-        
+
             <div class="form-group">
                 <label for="attractie">Naam attractie:</label>
                 <input type="text" name="attractie" id="attractie" class="form-input">
             </div>
             <div class="form-group">
                 <label for="type">Type</label>
-                <!-- hier komt een dropdown -->
+                <select name="type" id="type">
+                    <option value=""> - Kies je type -</option>
+                    <option value="A">Achtbaan</option>
+                    <option value="B">Draaiend</option>
+                    <option value="C">Kinder</option>
+                    <option value="D">Horeca</option>
+                    <option value="E">Show</option>
+                    <option value="F">Water</option>
+                    <option value="G">Overig</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="capaciteit">Capaciteit p/uur:</label>
@@ -31,11 +40,20 @@
                 <label for="melder">Naam melder:</label>
                 <input type="text" name="melder" id="melder" class="form-input">
             </div>
-            
+            <div class="form-group">
+                <label for="prioriteit">Melding?</label>
+                <input type="checkbox" name="prioriteit" id="prioriteit">
+                <label for="prioriteit">Ja, Ik wil meldingen ontvangen!</label>
+            </div>
+            <div class="form-group">
+                <label for="overig">Overige Info:</label>
+                <textarea name="overig" id="overig" class="form-input"rows="4"></textarea>
+            </div>
+
             <input type="submit" value="Verstuur melding">
 
         </form>
-    </div>  
+    </div>
 
 </body>
 
