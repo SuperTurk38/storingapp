@@ -24,14 +24,30 @@
         $query = "SELECT * FROM meldingen";
         $statement = $conn->prepare($query);
         $statement->execute();
-        $meldingen = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $meldingen = $statement->fetchAll(PDO::FETCH_ASSOC); ?>
 
-        foreach($meldingen as $lijst):
-            echo "<p>" . $lijst['attractie']. ", type: " . $lijst['type'] . ", capaciteit: " . $lijst['capaciteit'] . ", overige info: " . $lijst['overige_info']; "</p>";
-//            echo "<p>" . $lijst['type'] . "</p>";
-
-        endforeach;
-        ?>
+        <table>
+            <tr>
+                <th>Attracties</th>
+                <th>Type</th>
+                <th>Capaciteit</th>
+                <th>Melder</th>
+                <th>Gemeld op</th>
+                <th>Overige Info</th>
+                <th>Aanpassen</th>
+            </tr>
+            <?php foreach ($meldingen as $melding): ?>
+            <tr>
+                <td><?php echo $melding['attractie']; ?></td>
+                <td><?php echo $melding['type']; ?></td>
+                <td><?php echo $melding['capaciteit']; ?></td>
+                <td><?php echo $melding['melder']; ?></td>
+                <td><?php echo $melding['gemeld_op']; ?></td>
+                <td><?php echo $melding['overige_info']; ?></td>
+                <td><a href="../meldingen/edit.php?id= <?php echo $melding['id']; ?>">AANPASSEN</a></td>
+            </tr>
+             <?php endforeach; ?>
+        </table>
 
     </div>
 
