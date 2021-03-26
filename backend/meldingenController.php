@@ -1,17 +1,9 @@
 <?php
 $action = $_POST['action'];
 
-if($action == "create") {
+if ($action == "create") {
 
-
-    if ($action == "edit") {
-
-    }
-    if ($action == "update") {
-
-    }
-
-//Variabelen vullen
+    //Variabelen vullen
     $attractie = $_POST['attractie'];
     if (empty($attractie)) {
         $errors[] = "Vul de attractie-naam in.";
@@ -39,18 +31,18 @@ if($action == "create") {
         var_dump($errors);
         die();
     }
-//echo $attractie . " / " . $capaciteit . " / " . $melder;
+    //echo $attractie . " / " . $capaciteit . " / " . $melder;
 
-//1. Verbinding
+    //1. Verbinding
     require_once 'conn.php';
 
-//2. Query
+    //2. Query
     $query = "INSERT INTO meldingen(attractie,capaciteit, melder, type, prioriteit, overige_info)VALUES(:attractie,:capaciteit,:melder,:type,:prioriteit,:overige_info)";
 
-//3. Prepare
+    //3. Prepare
     $statement = $conn->prepare($query);
 
-//4. Execute
+    //4. Execute
     $statement->execute([
         ":attractie" => $attractie,
         ":capaciteit" => $capaciteit,
@@ -62,3 +54,37 @@ if($action == "create") {
 
     header("Location: ../meldingen/index.php?msg=Melding opgeslagen");
 }
+if ($action == "edit") {
+
+    $attractie = $_POST['attractie'];
+    $capaciteit = $_POST['capaciteit'];
+    $melder = $_POST['melder'];
+    $type = $_POST['type'];
+    if (isset($_POST['prioriteit'])) {
+        $prioriteit = true;
+    } else {
+        $prioriteit = false;
+    }
+    $overig = $_POST['overig'];
+
+    require_once 'conn.php';
+    $query = "UPDATE meldingen set capaciteit = :capaciteit, attractie = :attractie, melder = :melder, type = :type, prioriteit = :prioriteit, overig = :overig_info WHERE id = :id";
+    $statement = $conn->prepare($query);
+    $statement->execute([
+        ":attractie" => $attractie,
+        ":capaciteit" => $capaciteit,
+        ":melder" => $melder,
+        ":type" => $type,
+        ":prioriteit" => $prioriteit,
+        ":overig_info" => $overig,
+        ":id" => $id
+    ]);
+    header("Location: ../meldingen/index.php?msg=Melding veranderd!");
+}
+
+    if ($action == "delete") {
+
+    }
+
+
+

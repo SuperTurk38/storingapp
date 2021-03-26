@@ -35,7 +35,7 @@
         $melding = $statement->fetch(PDO::FETCH_ASSOC)
         ?>
 
-        <form action="........." method="POST">
+        <form action="../backend/meldingenController.php" method="POST">
             <!-- (voeg hier opdracht 7 toe) -->
             <input type="hidden" name="action" value="edit">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
