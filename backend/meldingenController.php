@@ -27,6 +27,7 @@ if ($action == "create") {
     }
     $overig = $_POST['overig'];
 
+    $id = $_POST['id'];
     if (isset($errors)) {
         var_dump($errors);
         die();
